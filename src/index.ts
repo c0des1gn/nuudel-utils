@@ -8,6 +8,7 @@ import {
   Permission,
   Language,
   IDeliveryType,
+  Theme,
 } from './lib/common/ControlMode';
 
 import { HttpClient } from './lib/request';
@@ -16,6 +17,7 @@ import I8, { t, changeLanguage, defaultLocale } from './lib/loc/i18n';
 /**
  * Types exported
  */
+export type { Theme };
 
 export {
   ScreenType,

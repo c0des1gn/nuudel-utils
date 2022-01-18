@@ -11,6 +11,7 @@ import {
 } from './lib/common/ControlMode';
 
 import { HttpClient } from './lib/request';
+import I8, { t, changeLanguage, defaultLocale } from './lib/loc/i18n';
 
 /**
  * Types exported by 'components/base'
@@ -27,7 +28,7 @@ export type {
   IDeliveryType,
 };
 
-export { HttpClient };
+export { HttpClient, t, changeLanguage, defaultLocale, I8 };
 
 //@Utils
 export * from './lib/common/Utils';

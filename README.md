@@ -1,3 +1,3 @@
 # nuudel-utils
 
-core components for nuudel
+helper function for nuudel

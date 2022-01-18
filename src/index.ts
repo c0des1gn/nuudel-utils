@@ -14,10 +14,10 @@ import { HttpClient } from './lib/request';
 import I8, { t, changeLanguage, defaultLocale } from './lib/loc/i18n';
 
 /**
- * Types exported by 'components/base'
+ * Types exported
  */
-export type {
-  ControlMode,
+
+export {
   ScreenType,
   DisplayType,
   QueryType,
@@ -26,9 +26,13 @@ export type {
   Permission,
   Language,
   IDeliveryType,
+  ControlMode,
+  HttpClient,
+  t,
+  changeLanguage,
+  defaultLocale,
+  I8,
 };
-
-export { HttpClient, t, changeLanguage, defaultLocale, I8 };
 
 //@Utils
 export * from './lib/common/Utils';

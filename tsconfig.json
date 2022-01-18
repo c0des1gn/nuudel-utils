@@ -5,7 +5,7 @@
     "jsx": "preserve",
     "outDir": "build/main",
     "rootDir": "src",
-    "baseUrl": ".",
+    //"baseUrl": ".",
     "moduleResolution": "node",
     "module": "commonjs",
     "declaration": true,
@@ -46,8 +46,8 @@
     "types": [],
     "typeRoots": ["node_modules/@types", "src/types"],
     "paths": {
-      "@Utils": ["src/lib/common/Utils"],
-      "@Translate": ["src/lib/loc/i18n"],
+      "@Utils": ["./src/lib/common/Utils"],
+      "@Translate": ["./src/lib/loc/i18n"],
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],

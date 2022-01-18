@@ -17,8 +17,10 @@
  * something();
  * ```
  */
-declare module 'module-name' {
+
+import { Utils } from '../index';
+declare module '@nuudel-utils' {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const whatever: any;
-  export = whatever;
+  //export * from '../index';
+  export = Utils;
 }

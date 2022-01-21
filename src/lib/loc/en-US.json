@@ -55,5 +55,12 @@
   "ErrorLoadingSchema": "Error loading schema for list",
   "FieldsErrorOnSaving": "The item could not be saved. Please check detailed error messages on the fields below.",
   "ItemSavedSuccessfully": "Item saved successfully.",
+  "Attach signature": "Attach signature",
+  "sign above": "Sign above",
+  "Re-take Signature": "Re-take Signature",
+  "Clear": "Clear",
+  "Confirm": "Confirm",
+  "Search": "Search",
+  "No category": "No category",
   "ErrorOnSavingListItem": "Error on loading lists: "
 }

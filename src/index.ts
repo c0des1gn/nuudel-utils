@@ -9,6 +9,7 @@ import {
   Language,
   IDeliveryType,
   Theme,
+  ViewMode,
 } from './lib/common/ControlMode';
 
 import { HttpClient } from './lib/request';
@@ -29,6 +30,7 @@ export {
   Language,
   IDeliveryType,
   ControlMode,
+  ViewMode,
   HttpClient,
   t,
   changeLanguage,

@@ -96,3 +96,13 @@ export enum IDeliveryType {
   Delivery = 'Delivery',
   Pickup = 'Pickup',
 }
+
+/**
+ * Determines the display mode of view on flatlist.
+ */
+export enum ViewMode {
+  List = 1,
+  Card = 2,
+  CardList = 3,
+  Calendar = 4,
+}

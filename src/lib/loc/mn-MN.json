@@ -55,5 +55,12 @@
   "ErrorLoadingSchema": "Алдаа жагсаалтын схем ачаалж чадсангүй ",
   "FieldsErrorOnSaving": "Хадгалж чадсангүй. Дараах алдааны мэдээллийг харна уу.",
   "ItemSavedSuccessfully": "Амжилттай хадгалав.",
+  "Attach signature": "Гарын үсэг",
+  "sign above": "Дээр зурна уу",
+  "Re-take Signature": "Гарын үсэг засах",
+  "Clear": "Цэвэрлэх",
+  "Confirm": "Батал",
+  "Search": "Хайх",
+  "No category": "Ангилал байхгүй",
   "ErrorOnSavingListItem": "Алдаа жагсаалтыг ачаалж чадсангүй: "
 }

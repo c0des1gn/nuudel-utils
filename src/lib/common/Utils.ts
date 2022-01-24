@@ -182,6 +182,26 @@ export const estimateDay = (created: any, days: number = 1) => {
   return estimate_start + ' ~ ' + estimate_end;
 };
 
+export const estimate = (start: any, end: any, hasTime: boolean = false) => {
+  const estimate_start = dateToString(start, 'YY/MM/DD');
+  const estimate_end = dateToString(end, 'YY/MM/DD');
+
+  if (estimate_start === estimate_end) {
+    if (hasTime)
+      return (
+        dateToString(start, 'YY/MM/DD HH:mm') +
+        ' ~ ' +
+        dateToString(end, 'HH:mm')
+      );
+    else return dateToString(start, 'YY/MM/DD');
+  }
+  return (
+    dateToString(start, hasTime ? 'YY/MM/DD HH:mm' : 'YY/MM/DD') +
+    ' ~ ' +
+    dateToString(end, hasTime ? 'MM/DD HH:mm' : 'MM/DD')
+  );
+};
+
 export const traverse = (data: any, parent: string = ''): any => {
   let nodes = {};
   for (let [key, value] of Object.entries(data)) {

@@ -22,6 +22,7 @@ export enum ScreenType {
   Dynamic = 9,
   Component = 10,
   Link = 11, // open link
+  Screen = 12,
 }
 
 /**
@@ -105,4 +106,13 @@ export enum ViewMode {
   Card = 2,
   CardList = 3,
   Calendar = 4,
+}
+
+/**
+ * Order type.
+ */
+export enum OrderType {
+  Current = 'Current',
+  Complete = 'Complete',
+  Waiting = 'Waiting',
 }

@@ -1,6 +1,6 @@
 {
   "name": "nuudel-utils",
-  "version": "0.1.16",
+  "version": "0.1.18",
   "description": "Web components for react with material UI",
   "private": false,
   "main": "build/main/index.js",
@@ -16,7 +16,7 @@
     "url": "https://github.com/c0des1gn/nuudel-utils/issues"
   },
   "keywords": [
-    "react"
+    "typescript"
   ],
   "scripts": {
     "build": "run-p build:*",

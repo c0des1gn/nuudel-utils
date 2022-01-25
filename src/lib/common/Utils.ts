@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { t } from '@Translate';
+import { t } from '../loc/i18n';
 import { MarketType, Permission } from '../common/ControlMode';
 import * as crypto from 'crypto-js';
 

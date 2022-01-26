@@ -47,9 +47,20 @@ export const domainFixer = (
 
 export const pathname: string = 'api/graphql';
 
-const hostname: string = 'localhost';
-const protocol: string = 'https';
-const port: string = '';
+let hostname: string = 'localhost';
+let protocol: string = 'https';
+let port: string = '';
+
+export const setOrigin = (
+  _hostname: string = 'localhost',
+  _protocol: string = 'https',
+  _port: string = '',
+  DEV: boolean = false
+) => {
+  hostname = _hostname;
+  protocol = _protocol;
+  port = _port;
+};
 
 export let HOST: string = CONF.base_url || `${protocol}://${hostname}${port}`;
 export let URL: string = `${HOST}/${pathname}`; // grapql API url

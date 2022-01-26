@@ -1,6 +1,6 @@
 {
   "name": "nuudel-utils",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "description": "Web components for react with material UI",
   "private": false,
   "main": "build/main/index.js",

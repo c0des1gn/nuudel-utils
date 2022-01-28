@@ -60,5 +60,17 @@ if (!I8.isInitialized) {
   });
 }
 
-export { translate as t, defaultLocale, changeLanguage };
+const setTranslate = (translate: Function) => {
+  reTranslate = translate;
+};
+
+let reTranslate: Function = undefined;
+const t = (key: string, options?: any): string => {
+  if (reTranslate && typeof reTranslate === 'function') {
+    return reTranslate(key, options);
+  }
+  return translate(key, options);
+};
+
+export { t, setTranslate, defaultLocale, changeLanguage };
 export default I8;

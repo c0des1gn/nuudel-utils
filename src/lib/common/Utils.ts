@@ -55,8 +55,7 @@ export const formatPrice = (value: any, fixed: number = 0) => {
   if (!isNaN(value)) {
     value = Number(value);
     const multi: number = fixed === 1 ? 10 : 1;
-    value =
-      fixed > 1 ? value.toFixed(fixed) : Math.round(value * multi) / multi;
+    value = fixed > 1 ? value.toFixed(fixed) : Math.ceil(value * multi) / multi;
     value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
   return value;
@@ -92,9 +91,13 @@ export const getCurrencySymbol = (currency: string = 'MNT'): any => {
     : { currency, pre: '', post: '' };
 };
 
-export const withSymbol = (value: any, currency: string = 'MNT'): string => {
+export const withSymbol = (
+  value: any,
+  currency: string = 'MNT',
+  fixed: number = 0
+): string => {
   const symbol = getCurrencySymbol(currency);
-  return symbol.pre + formatPrice(value) + symbol.post;
+  return symbol.pre + formatPrice(value, fixed) + symbol.post;
 };
 
 export const getSymbol = (): string => {

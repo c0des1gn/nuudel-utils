@@ -71,5 +71,5 @@ export const setHost = (
 ) => {
   HOST = host;
   URL = url || `${HOST}/${pathname}`;
-  return URL;
+  return host;
 };

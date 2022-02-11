@@ -8,8 +8,30 @@ export const INIT_DATE = 'INIT_DATE';
 export const INIT_DATA = 'INIT_DATA';
 export const STOCK_TYPE = 'STOCK_TYPE';
 export const GUEST_USER_ID = '1234567890abcd0987654321';
+//export const IS_MULTI_TENANT = false;
 
-export var CONF = {
+export interface ICONF {
+  minVersion: string;
+  site_title?: string;
+  site_description?: string;
+  posts_per_page?: number;
+  active?: boolean;
+  site_keywords?: string[];
+  logo?: any;
+  phone?: string;
+  location?: string;
+  web?: string;
+  base_url: string;
+  account?: any;
+  _fee?: number;
+  _limit?: number;
+  shipping?: any;
+  tax?: any;
+  cookie?: any;
+  store?: any[];
+}
+
+export let CONF: ICONF = {
   minVersion: '1.0.0',
   site_title: '',
   site_description: '',
@@ -25,6 +47,26 @@ export var CONF = {
   phone: '',
   location: '',
   web: 'www.codesign.mn',
+  account: {
+    account: '5070442134',
+    bank: 'Khanbank',
+    recipient: 'Mart',
+    currency: 'MNT',
+  },
+  _fee: 3000,
+  _limit: 30000,
+  shipping: { USD: 14, EUR: 10 },
+  tax: { US: 9.5, MN: 10 },
+  cookie: {
+    token: '',
+    expired: '1970-01-01 12:00:00',
+    sessionId: '',
+    sessionIdTime: '',
+    ubidMain: '',
+    sessionToken: '',
+    csmHit: '',
+  },
+  store: ['Ebay', 'Amazon'],
 };
 
 export const setConf = (Conf: any) => {
@@ -48,11 +90,11 @@ export const domainFixer = (
 export const pathname: string = 'api/graphql';
 
 let hostname: string = 'localhost';
-let protocol: string = 'https';
-let port: string = '';
+let protocol: string = 'http';
+let port: string = ':8080';
 
 export const setOrigin = (
-  _hostname: string = 'localhost',
+  _hostname: string,
   _protocol: string = 'https',
   _port: string = '',
   DEV: boolean = false
@@ -66,10 +108,9 @@ export let HOST: string = CONF.base_url || `${protocol}://${hostname}${port}`;
 export let URL: string = `${HOST}/${pathname}`; // grapql API url
 
 export const setHost = (
-  host: string = CONF?.base_url || `${protocol}://${hostname}${port}`,
-  url?: string
+  host: string = CONF?.base_url || `${protocol}://${hostname}${port}`
 ) => {
   HOST = host;
-  URL = url || `${HOST}/${pathname}`;
+  URL = `${HOST}/${pathname}`;
   return host;
 };

@@ -14,21 +14,21 @@ export interface ICONF {
   minVersion: string;
   site_title?: string;
   site_description?: string;
-  posts_per_page?: number;
+  posts_per_page: number;
   active?: boolean;
   site_keywords?: string[];
   logo?: any;
-  phone?: string;
+  phone: string;
   location?: string;
   web?: string;
   base_url: string;
   account?: any;
-  _fee?: number;
-  _limit?: number;
+  _fee: number;
+  _limit: number;
   shipping?: any;
   tax?: any;
   cookie?: any;
-  store?: any[];
+  store?: string[];
 }
 
 export let CONF: ICONF = {

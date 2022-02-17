@@ -44,7 +44,10 @@ export class Utils {
   }
 }
 
-export const titleShorter = (title: string, length = 30) => {
+export const titleShorter = (title: string, length = 30): string => {
+  if (!title) {
+    return '';
+  }
   if (title.length > length) {
     title = title.substring(0, length) + '...';
   }

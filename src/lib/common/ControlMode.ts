@@ -23,6 +23,7 @@ export enum ScreenType {
   Component = 10,
   Link = 11, // open link
   Screen = 12,
+  Click = 13,
 }
 
 /**

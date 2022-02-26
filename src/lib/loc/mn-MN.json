@@ -63,5 +63,9 @@
   "Search": "Хайх",
   "No category": "Ангилал байхгүй",
   "Ok": "За",
+  "Select Date": "Огноо",
+  "ImageButtonText": "Зураг оруулах",
+  "ChangePassword": "Нууц үг солих",
+  "ChangeEmail": "Имэйл өөрчлөх",
   "ErrorOnSavingListItem": "Алдаа жагсаалтыг ачаалж чадсангүй: "
 }

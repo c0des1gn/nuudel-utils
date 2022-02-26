@@ -1,6 +1,6 @@
 {
   "name": "nuudel-utils",
-  "version": "0.1.26",
+  "version": "0.1.27",
   "description": "Helper & config module for Nuudel",
   "private": false,
   "main": "build/main/index.js",

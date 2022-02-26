@@ -63,5 +63,9 @@
   "Search": "Search",
   "No category": "No category",
   "Ok": "Ok",
+  "Select Date": "Date",
+  "ImageButtonText": "Insert image",
+  "ChangePassword": "Change password",
+  "ChangeEmail": "Change email",
   "ErrorOnSavingListItem": "Error on loading lists: "
 }

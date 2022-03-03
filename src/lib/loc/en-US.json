@@ -67,5 +67,7 @@
   "ImageButtonText": "Insert image",
   "ChangePassword": "Change password",
   "ChangeEmail": "Change email",
+  "TakePhoto": "Take photo",
+  "ChooseFromLibrary": "Choose from library",
   "ErrorOnSavingListItem": "Error on loading lists: "
 }

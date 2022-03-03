@@ -67,5 +67,7 @@
   "ImageButtonText": "Зураг оруулах",
   "ChangePassword": "Нууц үг солих",
   "ChangeEmail": "Имэйл өөрчлөх",
+  "TakePhoto": "Зураг дарах",
+  "ChooseFromLibrary": "Зургийн сангаас сонго",
   "ErrorOnSavingListItem": "Алдаа жагсаалтыг ачаалж чадсангүй: "
 }

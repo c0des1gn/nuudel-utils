@@ -520,6 +520,19 @@ export const dateToString = (
   return moment(date).format(format);
 };
 
+export const toDate = (
+  date: any, //string | undefined | null | Date | number
+  defaultValue = ''
+): Date => {
+  if (date instanceof Date) {
+    return date;
+  }
+  if (!date || !moment(date).isValid()) {
+    return !defaultValue ? new Date() : new Date(defaultValue);
+  }
+  return moment(date).toDate();
+};
+
 export const decodeHTML = (str: string) => {
   return str.replace(/&#([0-9]{1,3});/gi, (match, num) => {
     return String.fromCharCode(parseInt(num));

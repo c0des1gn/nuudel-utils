@@ -1,6 +1,6 @@
 {
   "name": "nuudel-utils",
-  "version": "0.1.31",
+  "version": "0.1.32",
   "description": "Helper & config module for Nuudel",
   "private": false,
   "main": "build/main/index.js",
@@ -54,11 +54,7 @@
     "axios": "^0.25.0",
     "crypto-js": "^4.1.1",
     "graphql-tag": "^2.12.6",
-    "i18next": "^21.6.6",
-    "lodash.memoize": "^4.1.2",
-    "moment": "^2.29.1",
-    "react-device-detect": "^2.1.2",
-    "react-i18next": "^11.15.3"
+    "moment": "^2.29.1"
   },
   "devDependencies": {
     "@ava/typescript": "^1.1.1",

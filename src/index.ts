@@ -14,12 +14,6 @@ import {
 } from './lib/common/ControlMode';
 
 import { HttpClient } from './lib/request';
-import I8, {
-  t,
-  setTranslate,
-  changeLanguage,
-  defaultLocale,
-} from './lib/loc/i18n';
 
 /**
  * Types exported
@@ -39,11 +33,6 @@ export {
   ViewMode,
   OrderType,
   HttpClient,
-  t,
-  setTranslate,
-  changeLanguage,
-  defaultLocale,
-  I8,
 };
 
 //@Utils

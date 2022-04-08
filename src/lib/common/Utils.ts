@@ -1,5 +1,6 @@
 import moment from 'moment';
 import { MarketType, Permission } from '../common/ControlMode';
+import { RATES } from '../config';
 import * as crypto from 'crypto-js';
 
 export class Utils {
@@ -84,10 +85,10 @@ const currency_symbol: object = {
 
 export const getCurrency = (): any => {
   //const { user } = store.getState();
-  return 'MNT';
+  return 'MNT'; //user.currency
 };
 
-export const getCurrencySymbol = (currency: string = 'MNT'): any => {
+export const getCurrencySymbol = (currency: string = getCurrency()): any => {
   return Object.keys(currency_symbol).indexOf(currency) >= 0
     ? { currency, ...currency_symbol[currency] }
     : { currency, pre: '', post: '' };
@@ -95,7 +96,7 @@ export const getCurrencySymbol = (currency: string = 'MNT'): any => {
 
 export const withSymbol = (
   value: any,
-  currency: string = 'MNT',
+  currency: string = getCurrency(),
   fixed: number = 0
 ): string => {
   const symbol = getCurrencySymbol(currency);
@@ -112,7 +113,6 @@ export const convertCurrency = (
   currency: string,
   showzero: boolean = false
 ): string => {
-  //const { user } = store.getState();
   let rate: number = getRate(currency);
   const converted_currency = rate === 1 ? currency : getCurrency();
   const symbol =
@@ -123,9 +123,16 @@ export const convertCurrency = (
   return value === '0' && !showzero ? '' : symbol.pre + value + symbol.post;
 };
 
-export const getRate = (currency: string): number => {
+export const getRate = (currency: string = getCurrency()): number => {
+  //const { user } = store.getState();
   let rate: number = 1;
   let rt: any[] = [];
+
+  //if (user.rates.length > 0) {
+  //  rt = user.rates.filter((item) => item.currency === currency);
+  //} else {
+  rt = RATES;
+  //}
 
   if (rt && rt.length > 0) {
     rate = rt[0].rate;

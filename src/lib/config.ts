@@ -114,3 +114,5 @@ export const setHost = (
   URL = `${HOST}/${pathname}`;
   return host;
 };
+
+export var RATES: any[] = [];

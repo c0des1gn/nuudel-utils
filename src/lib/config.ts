@@ -116,3 +116,6 @@ export const setHost = (
 };
 
 export var RATES: any[] = [];
+export const setRates = (rates: any[]) => {
+  RATES = rates;
+};

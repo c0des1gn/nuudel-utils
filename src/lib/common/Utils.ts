@@ -538,3 +538,10 @@ export const parse_params = (path: string) => {
   });
   return query_string;
 };
+
+export const MathCeil = (value: number | string) => {
+  if (typeof value === 'string') {
+    value = parseFloat(value);
+  }
+  return Math.ceil(parseFloat((value * 100).toFixed(3))) / 100;
+};

@@ -31,7 +31,7 @@ export interface ICONF {
   store?: string[];
 }
 
-export let CONF: ICONF = {
+export var CONF: ICONF = {
   minVersion: '1.0.0',
   site_title: '',
   site_description: '',
@@ -64,7 +64,6 @@ export let CONF: ICONF = {
     sessionIdTime: '',
     ubidMain: '',
     sessionToken: '',
-    csmHit: '',
   },
   store: ['Ebay', 'Amazon'],
 };
@@ -104,8 +103,8 @@ export const setOrigin = (
   port = _port;
 };
 
-export let HOST: string = CONF.base_url || `${protocol}://${hostname}${port}`;
-export let URL: string = `${HOST}/${pathname}`; // grapql API url
+export var HOST: string = CONF.base_url || `${protocol}://${hostname}${port}`;
+export var URL: string = `${HOST}/${pathname}`; // grapql API url
 
 export const setHost = (
   host: string = CONF?.base_url || `${protocol}://${hostname}${port}`

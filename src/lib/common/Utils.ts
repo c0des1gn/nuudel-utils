@@ -44,7 +44,7 @@ export class Utils {
   }
 }
 
-export const titleShorter = (title: string, length = 30): string => {
+export const titleShorter = (title: string = '', length = 30): string => {
   if (!title) {
     return '';
   }
@@ -234,7 +234,7 @@ export const getUnique = (arr, comp): any[] => {
   return unique;
 };
 
-export const getAdress = (
+export const getAddress = (
   address: any,
   withPhone = true,
   withCountry = false,
@@ -264,6 +264,11 @@ export const getAdress = (
     return e;
   });
 };
+
+/**
+ * @deprecated The method should not be used
+ */
+export const getAdress = getAddress;
 
 export const isHTML = RegExp.prototype.test.bind(
   /(<\/[^>]*?>)|(<[^>]*?\/>)/m // <(\S*?)[^>]*>(.|\n)*?<\/\1>

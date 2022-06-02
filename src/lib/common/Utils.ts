@@ -456,7 +456,10 @@ export const toDate = (
 };
 
 export const decodeHTML = (str: string) => {
-  return str.replace(/&#([0-9]{1,3});/gi, (match, num) => {
+  if (!str || typeof str !== 'string') {
+    return '';
+  }
+  return str?.replace(/&#([0-9]{1,3});/gi, (match, num) => {
     return String.fromCharCode(parseInt(num));
   });
 };

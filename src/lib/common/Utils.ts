@@ -1,6 +1,6 @@
 import moment from 'moment';
 import { MarketType, Permission } from '../common/ControlMode';
-import { RATES } from '../config';
+import { RATES, CONF } from '../config';
 import * as crypto from 'crypto-js';
 
 export class Utils {
@@ -281,7 +281,7 @@ export const getTax = (market: MarketType): number => {
 
 export const shipping = (product: any): number => {
   return (
-    product.shipping.value *
+    (product.shipping?.value || 0) *
     product.qty *
     product.rate *
     (product.taxincluded && product.shippingtaxed === false
@@ -309,8 +309,11 @@ export const subtotal = (product: any): number => {
   );
 };
 
-export const fee = (product: any): number => {
-  return product.cost.value * product.qty;
+export const fee = (
+  product: any,
+  limit: number = CONF?._limit || 0
+): number => {
+  return product.cost.value * product.rate < limit ? 1 : product.qty;
 };
 
 export const uuid = (): string => {

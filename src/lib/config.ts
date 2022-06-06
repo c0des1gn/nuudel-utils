@@ -53,8 +53,8 @@ export var CONF: ICONF = {
     recipient: 'Mart',
     currency: 'MNT',
   },
-  _fee: 3000,
-  _limit: 30000,
+  _fee: 0,
+  _limit: 0,
   shipping: { USD: 14, EUR: 10 },
   tax: { US: 9.5, MN: 10 },
   cookie: {

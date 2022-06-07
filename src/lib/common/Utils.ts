@@ -198,7 +198,7 @@ export const estimate = (start: any, end: any, hasTime: boolean = false) => {
 export const traverse = (data: any, parent: string = ''): any => {
   let nodes = {};
   for (let [key, value] of Object.entries(data)) {
-    const internalName = !!parent ? parent + '.' + key : key;
+    let internalName = !!parent ? parent + '.' + key : key;
     if (
       typeof value === 'object' &&
       value !== null &&
@@ -238,7 +238,8 @@ export const getAddress = (
   address: any,
   withPhone = true,
   withCountry = false,
-  withCode = false
+  withCode = false,
+  isReserse = false
 ) => {
   let location: string[] = [];
   if (!address) {
@@ -260,9 +261,9 @@ export const getAddress = (
     );
   if (!!address.country && withCountry) location.push(address.country);
 
-  return location.filter(function (e) {
-    return e;
-  });
+  location = location.filter(Boolean);
+
+  return !isReserse ? location : location.reverse();
 };
 
 /**

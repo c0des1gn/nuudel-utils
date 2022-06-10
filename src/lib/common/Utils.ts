@@ -103,8 +103,8 @@ export const withSymbol = (
   return symbol.pre + formatPrice(value, fixed) + symbol.post;
 };
 
-export const getSymbol = (): string => {
-  const symbol = getCurrencySymbol();
+export const getSymbol = (currency?: string): string => {
+  const symbol = getCurrencySymbol(currency);
   return !symbol.pre ? symbol.post : symbol.pre;
 };
 
@@ -314,7 +314,7 @@ export const fee = (
   product: any,
   limit: number = CONF?._limit || 0
 ): number => {
-  return product.cost.value * product.rate < limit ? 1 : product.qty;
+  return product.cost?.value * product.rate < limit ? 1 : product.qty;
 };
 
 export const uuid = (): string => {

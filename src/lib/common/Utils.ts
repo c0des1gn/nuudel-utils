@@ -332,18 +332,18 @@ export const uuid = (): string => {
   return uid;
 };
 
-export const base64enc = (data: string): string => {
+export const base64enc = (data: string, encoding: string = 'Utf8'): string => {
   if (!data) {
     return '';
   }
-  return crypto.enc.Base64.stringify(crypto.enc.Utf8.parse(data));
+  return crypto.enc.Base64.stringify(crypto.enc[encoding].parse(data));
 };
 
-export const base64dec = (data: string): string => {
+export const base64dec = (data: string, encoding: string = 'Utf8'): string => {
   if (!data) {
     return '';
   }
-  return crypto.enc.Base64.parse(data).toString(crypto.enc.Utf8);
+  return crypto.enc.Base64.parse(data).toString(crypto.enc[encoding]);
 };
 
 export const isServer: boolean = typeof window === 'undefined';

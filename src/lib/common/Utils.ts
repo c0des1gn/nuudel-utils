@@ -332,6 +332,20 @@ export const uuid = (): string => {
   return uid;
 };
 
+export const base64enc = (data: string): string => {
+  if (!data) {
+    return '';
+  }
+  return crypto.enc.Base64.stringify(crypto.enc.Utf8.parse(data));
+};
+
+export const base64dec = (data: string): string => {
+  if (!data) {
+    return '';
+  }
+  return crypto.enc.Base64.parse(data).toString(crypto.enc.Utf8);
+};
+
 export const isServer: boolean = typeof window === 'undefined';
 
 export const formatDate = (isoDateString: string): string => {

@@ -492,9 +492,11 @@ export const getPath = (
     'Product',
     'Stock',
     'User',
+    'Post',
+    'Page',
   ]
 ) => {
-  if (customLists.indexOf(listname) >= 0) {
+  if (customLists.findIndex((l) => l === listname) >= 0) {
     return 'User' === listname
       ? '/admin/signup'
       : '/admin/' + listname.toLowerCase();

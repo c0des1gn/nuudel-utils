@@ -567,6 +567,17 @@ export const parse_params = (path: string) => {
   return query_string;
 };
 
+export const stringify_params = (obj: any) => {
+  return !obj
+    ? ''
+    : Object.entries<string>(obj)
+        .map(
+          ([key, val]) =>
+            `${encodeURIComponent(key)}=${encodeURIComponent(val)}`
+        )
+        .join('&');
+};
+
 export const MathCeil = (value: number | string) => {
   if (typeof value === 'string') {
     value = parseFloat(value);

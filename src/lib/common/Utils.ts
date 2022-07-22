@@ -578,15 +578,6 @@ export const stringify_params = (obj: any): string => {
         .join('&');
 };
 
-export const parseCookie = (str: string) =>
-  str
-    ?.split(';')
-    .map((v) => v.split('='))
-    .reduce((acc, v) => {
-      acc[decodeURIComponent(v[0]?.trim())] = decodeURIComponent(v[1]?.trim());
-      return acc;
-    }, {}) || {};
-
 export const MathCeil = (value: number | string): number => {
   if (typeof value === 'string') {
     value = parseFloat(value);

@@ -567,18 +567,27 @@ export const parse_params = (path: string) => {
   return query_string;
 };
 
-export const stringify_params = (obj: any) => {
+export const stringify_params = (obj: any): string => {
   return !obj
     ? ''
     : Object.entries<string>(obj)
         .map(
           ([key, val]) =>
-            `${encodeURIComponent(key)}=${encodeURIComponent(val)}`
+            `${encodeURIComponent(key)}=${encodeURIComponent(val || '')}`
         )
         .join('&');
 };
 
-export const MathCeil = (value: number | string) => {
+export const parseCookie = (str: string) =>
+  str
+    ?.split(';')
+    .map((v) => v.split('='))
+    .reduce((acc, v) => {
+      acc[decodeURIComponent(v[0]?.trim())] = decodeURIComponent(v[1]?.trim());
+      return acc;
+    }, {}) || {};
+
+export const MathCeil = (value: number | string): number => {
   if (typeof value === 'string') {
     value = parseFloat(value);
   }

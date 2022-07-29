@@ -277,6 +277,14 @@ export const isHTML = RegExp.prototype.test.bind(
 
 export const getTax = (market: MarketType): number => {
   let tax: number = 0;
+  switch (market) {
+    case MarketType.Mart:
+      tax = CONF.tax.MN;
+      break;
+    default:
+      tax = CONF.tax.US;
+      break;
+  }
   return tax;
 };
 

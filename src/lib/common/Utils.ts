@@ -255,6 +255,7 @@ export const getAddress = (
   if (!!address.address) location.push(address.address);
   if (!!address.street) location.push(address.street);
   if (!!address.district) location.push(address.district);
+  if (!!address.disrict) location.push(address.disrict);
   if (!!address.city && withCountry)
     location.push(
       address.city + (!address.zipcode ? '' : ' ' + address.zipcode)
@@ -516,7 +517,7 @@ export const closeDialog = (refresh: boolean = false): void => {
   try {
     window.frameElement['cancelPopUp'](refresh);
   } catch {
-    window.parent.document.getElementById('closealldialogordrawer').click();
+    window.parent.document.getElementById('closealldialogordrawer')?.click();
   }
 };
 
@@ -539,12 +540,15 @@ export const lookupFormater = (data: any[], name: string) => {
   return list;
 };
 
-export const query_string = (query: string) => {
+export const query_string = (query: string = '') => {
   let vars = query.replace(/^\?|^\%3(F|f)/, '').split('&');
   let query_string = {};
   for (let i: number = 0; i < vars.length; i++) {
     let pair = vars[i].split('=');
     let key = decodeURIComponent(pair[0]);
+    if (!key) {
+      continue;
+    }
     let value = decodeURIComponent(pair[1]);
     // If first entry with this name
     if (typeof query_string[key] === 'undefined') {
@@ -592,3 +596,31 @@ export const MathCeil = (value: number | string): number => {
   }
   return Math.ceil(parseFloat((value * 100).toFixed(3))) / 100;
 };
+
+export const getHash = (
+  divider: number = 100000,
+  length: number = 0
+): string => {
+  let now = Date.now();
+  let qid: number = Math.ceil(now / divider);
+  let after = Math.ceil((now + 30000) / divider); // add 30 sec
+  if (now !== after) {
+    qid = after;
+  }
+  const hash: string = crypto.SHA256(qid.toString()).toString();
+  return length > 0 ? hash.substring(0, length) : hash;
+};
+
+/**
+ * Takes an object and converts it to an array of its own properties.
+ */
+export function objectToArray<Key extends string, PropType>(
+  importObject: Record<Key, PropType>
+): PropType[] {
+  const keys = Object.getOwnPropertyNames(importObject);
+
+  // ES6 / TypeScript exports contain a __esModule property. Don't include that.
+  return keys
+    .filter((key) => key.indexOf('__') !== 0)
+    .map((key) => importObject[key]);
+}

@@ -26,7 +26,7 @@ export const HttpClient = async (
   let res: AxiosResponse<any>,
     data = {};
   try {
-    const method = request.method.toLowerCase();
+    const method = request.method?.toLowerCase();
     if (method === 'post') {
       res = await axios.post(url, body, request);
     } else if (method === 'put') {

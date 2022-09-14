@@ -601,10 +601,10 @@ export const getHash = (
   divider: number = 100000,
   length: number = 0
 ): string => {
-  let now = Date.now();
+  let now: number = Date.now();
   let qid: number = Math.ceil(now / divider);
   let after = Math.ceil((now + 30000) / divider); // add 30 sec
-  if (now !== after) {
+  if (qid !== after) {
     qid = after;
   }
   const hash: string = crypto.SHA256(qid.toString()).toString();

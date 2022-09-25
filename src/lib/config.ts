@@ -29,6 +29,7 @@ export interface ICONF {
   tax?: any;
   cookie?: any;
   store?: string[];
+  color?: string;
 }
 
 export var CONF: ICONF = {

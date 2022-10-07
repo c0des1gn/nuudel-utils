@@ -624,3 +624,15 @@ export function objectToArray<Key extends string, PropType>(
     .filter((key) => key.indexOf('__') !== 0)
     .map((key) => importObject[key]);
 }
+
+// bearer token extract open data
+export function tokenObj(token: string) {
+  let obj: any = null;
+  if (token?.includes('.')) {
+    let arr: string[] = token.split('.', 3);
+    try {
+      obj = JSON.parse(base64dec(arr[1]));
+    } catch {}
+  }
+  return obj;
+}

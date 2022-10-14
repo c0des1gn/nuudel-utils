@@ -54,9 +54,9 @@ export var CONF: ICONF = {
     recipient: 'Mart',
     currency: 'MNT',
   },
-  _fee: 0,
+  _fee: 10000,
   _limit: 0,
-  shipping: { USD: 14, EUR: 10 },
+  shipping: { USD: 15, EUR: 10 },
   tax: { US: 9.5, MN: 10 },
   cookie: {
     token: '',
@@ -108,7 +108,8 @@ export var HOST: string = CONF.base_url || `${protocol}://${hostname}${port}`;
 export var URL: string = `${HOST}/${pathname}`; // grapql API url
 
 export const setHost = (
-  host: string = CONF?.base_url || `${protocol}://${hostname}${port}`
+  host: string = CONF?.base_url ||
+    (hostname === 'localhost' ? HOST : `${protocol}://${hostname}${port}`)
 ) => {
   HOST = host;
   URL = `${HOST}/${pathname}`;

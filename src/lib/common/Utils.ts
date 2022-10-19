@@ -250,12 +250,13 @@ export const getAddress = (
     location.push(...[address.phone, address.mobile].filter(Boolean));
   }
 
-  if (!!address.other && withCode) location.push(address.address);
+  if (!!address.other && withCode) location.push(address.other);
 
   if (!!address.address) location.push(address.address);
+  else if (!!address.address1) location.push(address.address1);
   if (!!address.street) location.push(address.street);
   if (!!address.district) location.push(address.district);
-  if (!!address.disrict) location.push(address.disrict);
+  else if (!!address.disrict) location.push(address.disrict);
   if (!!address.city && withCountry)
     location.push(
       address.city + (!address.zipcode ? '' : ' ' + address.zipcode)

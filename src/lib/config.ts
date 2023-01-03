@@ -27,9 +27,10 @@ export interface ICONF {
   _limit: number;
   shipping?: any;
   tax?: any;
-  cookie?: any;
+  //cookie?: any;
   store?: string[];
   color?: string;
+  refresh_token: string[];
 }
 
 export var CONF: ICONF = {
@@ -58,15 +59,8 @@ export var CONF: ICONF = {
   _limit: 0,
   shipping: { USD: 15, EUR: 10 },
   tax: { US: 9.5, MN: 10 },
-  cookie: {
-    token: '',
-    expired: '1970-01-01 12:00:00',
-    sessionId: '',
-    sessionIdTime: '',
-    ubidMain: '',
-    sessionToken: '',
-  },
   store: ['Ebay', 'Amazon'],
+  refresh_token: [],
 };
 
 export const setConf = (Conf: any) => {

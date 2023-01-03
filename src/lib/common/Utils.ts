@@ -56,8 +56,8 @@ export const titleShorter = (title: string = '', length = 30): string => {
 
 export const formatPrice = (value: any, fixed: number = 0) => {
   if (!isNaN(value)) {
-    value = Number(value);
-    const multi: number = fixed === 1 ? 10 : 1;
+    value = typeof value !== 'number' ? Number(value) : value;
+    const multi: number = fixed < 0 ? 1 : Math.pow(10, fixed);
     value = fixed > 1 ? value.toFixed(fixed) : Math.ceil(value * multi) / multi;
     value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }

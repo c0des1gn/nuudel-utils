@@ -90,6 +90,14 @@ export enum Language {
 }
 
 /**
+ * Currency.
+ */
+export enum Currency {
+  MNT = 'MNT',
+  USD = 'USD',
+}
+
+/**
  * Theme.
  */
 export type Theme = 'light' | 'dark';

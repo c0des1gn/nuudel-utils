@@ -27,7 +27,7 @@ export interface ICONF {
   _limit: number;
   shipping?: any;
   tax?: any;
-  //cookie?: any;
+  cookie?: any;
   store?: string[];
   color?: string;
   refresh_token: string[];

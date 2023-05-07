@@ -69,6 +69,9 @@ export enum UserRole {
   User = 'User', // харилцагч
   Manager = 'Manager', // нярав
   Viewer = 'Viewer', // жолооч
+  Seller = 'Seller',
+  Partner = 'Partner',
+  Guest = 'Guest',
 }
 
 /**

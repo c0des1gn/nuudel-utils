@@ -592,11 +592,16 @@ export const stringify_params = (obj: any, prefix: string = ''): string => {
           .join('&');
 };
 
-export const MathCeil = (value: number | string): number => {
+export const MathCeil = (
+  value: number | string,
+  fractionDigits: number = 2
+): number => {
   if (typeof value === 'string') {
     value = parseFloat(value);
   }
-  return Math.ceil(parseFloat((value * 100).toFixed(3))) / 100;
+  fractionDigits = Math.abs(parseInt(String(fractionDigits)));
+  let pow: number = Math.pow(10, fractionDigits);
+  return Math.ceil(parseFloat((value * pow).toFixed(fractionDigits))) / pow;
 };
 
 export const getHash = (

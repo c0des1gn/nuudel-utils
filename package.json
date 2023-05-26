@@ -1,6 +1,6 @@
 {
   "name": "nuudel-utils",
-  "version": "0.1.72",
+  "version": "0.1.73",
   "description": "Helper & config module for Nuudel",
   "private": false,
   "main": "build/main/index.js",
@@ -54,7 +54,6 @@
     "moment": "^2.29.4"
   },
   "devDependencies": {
-    "i18next": "^21.6.6",
     "@ava/typescript": "^1.1.1",
     "@istanbuljs/nyc-config-typescript": "^1.0.2",
     "@types/crypto-js": "^3.1.47",
@@ -79,7 +78,7 @@
     "react-test-renderer": "^17.0.2",
     "standard-version": "^9.0.0",
     "typedoc": "^0.22.11",
-    "typescript": "^4.4.4"
+    "typescript": "^4.0.8"
   },
   "peerDependencies": {
     "i18next": "^21.6.6"

@@ -409,24 +409,29 @@ export const getPermission = (
     return Permission.Read;
   }
 
-  if (
-    user.type === 'Admin' ||
-    (!!data && data._userId && data._userId === user._id)
-  ) {
+  if (user.type === 'Admin' || (!!data?._userId && data._userId === user._id)) {
     return Permission.Remove;
   }
 
-  let per = user.permission.filter((p) => p.listname === listname);
-
-  if (per.length > 0) {
-    return per[0].permission;
-  } else if (
-    user.permission.length > 0 &&
-    user.permission[0].listname === 'Default'
-  ) {
-    return user.permission[0].permission;
+  let _permissions: any[] = user.permission || [];
+  let defaultIndex: number = _permissions.findIndex(
+      (p) => p.listname === 'Default'
+    ),
+    index: number = _permissions.findIndex((p) => p.listname === listname);
+  if (index < 0) {
+    index = defaultIndex;
   }
 
+  if (index >= 0) {
+    if (_permissions[index]?.permission) {
+      return _permissions[index].permission;
+    } else if (
+      index !== defaultIndex &&
+      _permissions[defaultIndex]?.permission
+    ) {
+      return _permissions[defaultIndex].permission;
+    }
+  }
   return permission;
 };
 

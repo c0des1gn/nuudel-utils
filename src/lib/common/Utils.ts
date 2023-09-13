@@ -85,7 +85,7 @@ export const currency_symbol: object = {
 
 export const getCurrency = (): any => {
   //const { user } = store.getState();
-  return 'MNT'; //user.currency
+  return 'MNT'; // user.currency ||
 };
 
 export const getCurrencySymbol = (currency: string = getCurrency()): any => {
@@ -284,14 +284,14 @@ export const isHTML = RegExp.prototype.test.bind(
   /(<\/[^>]*?>)|(<[^>]*?\/>)/m // <(\S*?)[^>]*>(.|\n)*?<\/\1>
 );
 
-export const getTax = (market: MarketType): number => {
+export const getTax = (market: MarketType, config = CONF): number => {
   let tax: number = 0;
   switch (market) {
     case MarketType.Mart:
-      tax = CONF.tax.MN;
+      tax = config.tax.MN;
       break;
     default:
-      tax = CONF.tax.US;
+      tax = config.tax.US;
       break;
   }
   return tax;

@@ -1,6 +1,6 @@
 import moment from 'moment';
 import { MarketType, Permission } from '../common/ControlMode';
-import { RATES, CONF } from '../config';
+import { RATES, CONF, ICONF } from '../config';
 import * as crypto from 'crypto-js';
 
 export class Utils {
@@ -284,7 +284,10 @@ export const isHTML = RegExp.prototype.test.bind(
   /(<\/[^>]*?>)|(<[^>]*?\/>)/m // <(\S*?)[^>]*>(.|\n)*?<\/\1>
 );
 
-export const getTax = (market: MarketType, config = CONF): number => {
+export const getTax = (
+  market: MarketType,
+  config: any | ICONF = CONF
+): number => {
   let tax: number = 0;
   switch (market) {
     case MarketType.Mart:

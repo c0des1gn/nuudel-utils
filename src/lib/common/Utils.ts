@@ -64,7 +64,7 @@ export const formatPrice = (value: any, fixed: number = 0) => {
   return value;
 };
 
-const currency_symbol: object = {
+export const currency_symbol: object = {
   MNT: { pre: '', post: '₮' },
   TRY: { pre: '', post: '₺' },
   INR: { pre: '', post: '₹' },
@@ -259,7 +259,7 @@ export const getAddress = (
   if (!!address.address) location.push(address.address);
   else if (!!address.address1) {
     location.push(address.address1);
-    if (!!address.address2) location.push(address.address2);
+    if (!!address.address2 && withCode) location.push(address.address2);
   }
   if (!!address.street) location.push(address.street);
   if (!!address.district) location.push(address.district);

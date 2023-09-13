@@ -128,6 +128,10 @@ export const getRate = (currency: string = getCurrency()): number => {
   let rate: number = 1;
   let rt: any[] = [];
 
+  if (currency === 'MNT') {
+    return rate;
+  }
+
   //if (user.rates.length > 0) {
   //  rt = user.rates.filter((item) => item.currency === currency);
   //} else {
@@ -253,7 +257,10 @@ export const getAddress = (
   if (!!address.other && withCode) location.push(address.other);
 
   if (!!address.address) location.push(address.address);
-  else if (!!address.address1) location.push(address.address1);
+  else if (!!address.address1) {
+    location.push(address.address1);
+    if (!!address.address2) location.push(address.address2);
+  }
   if (!!address.street) location.push(address.street);
   if (!!address.district) location.push(address.district);
   else if (!!address.disrict) location.push(address.disrict);
@@ -497,6 +504,10 @@ export const decodeHTML = (str: string) => {
   });
 };
 
+export const convertHtmlToPlain = (html: string): string => {
+  return html?.replace(/<[^>]+>/g, '') || '';
+};
+
 export const getPath = (
   listname: string,
   customLists: string[] = [
@@ -598,13 +609,17 @@ export const stringify_params = (obj: any, prefix: string = ''): string => {
 };
 
 export const MathCeil = (
-  value: number | string,
+  value: number | string = 0,
   fractionDigits: number = 2
 ): number => {
-  if (typeof value === 'string') {
+  if (null === value) {
+    return 0;
+  } else if (typeof value === 'string') {
     value = parseFloat(value);
   }
-  fractionDigits = Math.abs(parseInt(String(fractionDigits)));
+  fractionDigits = Math.abs(
+    typeof fractionDigits === 'number' ? fractionDigits : 2
+  );
   let pow: number = Math.pow(10, fractionDigits);
   return Math.ceil(parseFloat((value * pow).toFixed(fractionDigits))) / pow;
 };
@@ -647,4 +662,19 @@ export function tokenObj(token: string) {
     } catch {}
   }
   return obj;
+}
+
+export function sanitize_slug(slug: string) {
+  slug = (slug || '').trim().toLowerCase();
+  slug = slug
+    .replace(/\%/g, '')
+    //.replace(/%c2%a0|%e2%80%93|%e2%80%94/g, '-')
+    .replace(/&nbsp;|&#160;|&ndash;|&#8211;|&mdash;|&#8212;/g, '-')
+    .replace(/\//g, '-')
+    .replace(/&.+?;/g, '')
+    .replace(/\./g, '-')
+    .replace(/[^%a-z0-9 _-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/\-+/g, '-');
+  return slug;
 }

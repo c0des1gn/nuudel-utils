@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { MarketType, Permission } from '../common/ControlMode';
+import { MarketType, Permission, ILookupItem } from '../common/ControlMode';
 import { RATES, CONF, ICONF } from '../config';
 import * as crypto from 'crypto-js';
 
@@ -394,9 +394,12 @@ export const formatDate = (isoDateString: string): string => {
   return date.format('MMM do, yyyy');
 };
 
-export const formateDateForInput = (isoDateString: string): string => {
+export const formateDateForInput = (
+  isoDateString: string,
+  format: string = 'yyyy-MM-dd'
+): string => {
   if (isoDateString && moment(isoDateString).isValid()) {
-    return moment(isoDateString).format('yyyy-MM-dd');
+    return moment(isoDateString).format(format);
   }
   return isoDateString;
 };
@@ -550,7 +553,7 @@ export const clearText = (
 };
 
 export const lookupFormater = (data: any[], name: string) => {
-  let list = [];
+  let list: ILookupItem[] = [];
   if (data) {
     list = data.map((item) => ({
       _id: item._id,
@@ -560,42 +563,48 @@ export const lookupFormater = (data: any[], name: string) => {
   return list;
 };
 
-export const query_string = (query: string = '') => {
-  let vars = query.replace(/^\?|^\%3(F|f)/, '').split('&');
-  let query_string = {};
+export const query_string = (query: string = ''): object => {
+  let query_string: object = {};
+  if (!query) return query_string;
+  let vars: string[] = decodeURIComponent(query)
+    .replace(/^\?|^\%3(F|f)/, '')
+    .split('&');
+
   for (let i: number = 0; i < vars.length; i++) {
-    let pair = vars[i].split('=');
-    let key = decodeURIComponent(pair[0]);
+    let pair = vars[i].split('=', 2);
+    let key: string = decodeURIComponent(pair[0] || '');
     if (!key) {
       continue;
     }
-    let value = decodeURIComponent(pair[1]);
+    let value: string = decodeURIComponent(pair[1] || '');
     // If first entry with this name
     if (typeof query_string[key] === 'undefined') {
-      query_string[key] = decodeURIComponent(value);
+      query_string[key] = value;
       // If second entry with this name
     } else if (typeof query_string[key] === 'string') {
-      let arr = [query_string[key], decodeURIComponent(value)];
+      let arr = [query_string[key], value];
       query_string[key] = arr;
       // If third or later entry with this name
     } else {
-      query_string[key].push(decodeURIComponent(value));
+      query_string[key].push(value);
     }
   }
   return query_string;
 };
 
 export const parse_params = (path: string) => {
-  let query_string = {};
-  let url: string = path.match(
-    /^((http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&=]*))?$/
-  )
-    ? new URL(path).search
-    : path;
-  let params = new URLSearchParams(url);
-  params.forEach((key, value) => {
-    query_string[key] = value;
-  });
+  let query_string: object = {};
+  try {
+    let url: string = path.match(
+      /^((http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&=]*))?$/
+    )
+      ? new URL(path).search
+      : path;
+    let params = new URLSearchParams(url);
+    params.forEach((key, value) => {
+      query_string[key] = value;
+    });
+  } catch {}
   return query_string;
 };
 

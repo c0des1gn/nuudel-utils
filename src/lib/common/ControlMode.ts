@@ -128,3 +128,8 @@ export enum OrderType {
   Complete = 'Complete',
   Waiting = 'Waiting',
 }
+
+export type ILookupItem = {
+  _id: string;
+  name?: string;
+};

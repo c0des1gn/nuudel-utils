@@ -166,16 +166,20 @@ export const getMinLeft = (expired: any) => {
   return min;
 };
 
-export const estimateDay = (created: any, days: number = 1) => {
+export const estimateDay = (
+  created: any,
+  minDays: number = 1,
+  maxDays: number = 7
+) => {
   if (!(created && moment(created).isValid())) {
     return created;
   }
-  const estimate_start = moment(moment(created).add(days, 'd')).format(
+  const estimate_start = moment(moment(created).add(minDays, 'd')).format(
     'YYYY/MM/DD'
   );
-  const estimate_end = moment(moment(created).add(days + 7, 'd')).format(
-    'MM/DD'
-  );
+  const estimate_end = moment(
+    moment(created).add(minDays + maxDays, 'd')
+  ).format('MM/DD');
   return estimate_start + ' ~ ' + estimate_end;
 };
 
@@ -593,7 +597,7 @@ export const query_string = (query: string = ''): object => {
 };
 
 export const parse_params = (path: string) => {
-  let query_string: object = {};
+  let params: object = {};
   try {
     let url: string = path.match(
       /^((http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&=]*))?$/
@@ -602,10 +606,17 @@ export const parse_params = (path: string) => {
       : path;
     let params = new URLSearchParams(url);
     params.forEach((key, value) => {
-      query_string[key] = value;
+      params[key] = value;
     });
-  } catch {}
-  return query_string;
+  } catch {
+    params = {};
+    let regex = /[?&]([^=#]+)=([^&#]*)/g,
+      match: RegExpExecArray;
+    while ((match = regex.exec(path))) {
+      params[match[1]] = match[2] || '';
+    }
+  }
+  return params;
 };
 
 export const stringify_params = (obj: any, prefix: string = ''): string => {

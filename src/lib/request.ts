@@ -37,7 +37,7 @@ export const HttpClient = async (
       res = await axios.get(url, request);
     }
     if (res) {
-      if (res.status === 200) {
+      if (res.status == 200 || res.status == 201 || res.status == 202) {
       }
       if (res.data) {
         data = res.data;
@@ -52,7 +52,7 @@ export const HttpClient = async (
       throw new Error(error.message);
     } else if (error.response) {
       // The request was made and the server responded with a status code that falls out of the range of 2xx
-      throw new Error(error.response.data.message);
+      throw new Error(error.response.data?.message);
     } else {
       throw new Error(error);
     }

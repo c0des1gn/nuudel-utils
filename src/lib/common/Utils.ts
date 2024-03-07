@@ -255,7 +255,12 @@ export const getAddress = (
   }
 
   if (withPhone && (address.phone || address.mobile)) {
-    location.push(...[address.phone, address.mobile].filter(Boolean));
+    location.push(
+      ...(!isReserse
+        ? [address.phone, address.mobile]
+        : [address.mobile, address.phone]
+      ).filter(Boolean)
+    );
   }
 
   if (!!address.other && withCode) location.push(address.other);
@@ -620,15 +625,16 @@ export const parse_params = (path: string) => {
 };
 
 export const stringify_params = (obj: any, prefix: string = ''): string => {
-  return !obj
+  let URIComponent = !obj
     ? ''
-    : prefix +
-        Object.entries<string>(obj)
-          .map(
-            ([key, val]) =>
-              `${encodeURIComponent(key)}=${encodeURIComponent(val || '')}`
-          )
-          .join('&');
+    : Object.entries<string>(obj)
+        .map(
+          ([key, val]) =>
+            `${encodeURIComponent(key)}=${encodeURIComponent(val || '')}`
+        )
+        .join('&');
+
+  return (!URIComponent ? '' : prefix) + URIComponent;
 };
 
 export const MathCeil = (

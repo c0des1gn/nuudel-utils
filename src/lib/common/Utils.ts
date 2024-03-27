@@ -375,6 +375,21 @@ export const base64dec = (data: string, encoding: string = 'Utf8'): string => {
   return crypto.enc.Base64.parse(data).toString(crypto.enc[encoding]);
 };
 
+export const nonce = (
+  data: string,
+  encoding: string = 'Utf8',
+  len: number = 128
+): string => {
+  if (!data) {
+    return '';
+  }
+  let base64 = crypto.enc.Base64.stringify(
+    crypto.enc[encoding].parse(data.substring(0, len))
+  );
+  let sha256: string = crypto.SHA256(base64).toString(crypto.enc.Hex);
+  return sha256;
+};
+
 export const isServer: boolean = typeof window === 'undefined';
 
 export const formatDate = (isoDateString: string): string => {
